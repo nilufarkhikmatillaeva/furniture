@@ -19,11 +19,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
+from core.views import test_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('shared.urls'))
+    path('blogs/', include('blogs.urls', namespace='blogs')),
+    path('products/', include('products.urls', namespace='products')),
+    path('', include('shared.urls', namespace='shared')),
+    path('test/', test_view),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
