@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
-{% block title %}About Us{% endblock %}
+    {% block title %}About Us{% endblock %}
 
 {% block id %}id="about-us"{% endblock %}
 {% block class %}class="blog"{% endblock %}
@@ -93,60 +93,14 @@
                                         <div class="cms-block f-right">
                                             <h3 class="page-subheading no-before">MEET OUR TEAM</h3>
                                             <div class="testimonials owl-carousel owl-theme owl-loaded owl-drag">
-                                                <div class="item">
-                                                    <div class="name">William James</div>
-                                                    <div class="position">Designer - Stylish</div>
-                                                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin,
-                                                        lorem
-                                                        quis biben dum auctor, nisi elit consequat ipsum, nec sagittis
-                                                        sem
-                                                        nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit
-                                                        amet
-                                                        mauris. Proin gravida nibh vel velit auctor aliquet. Aenean
-                                                        sollicudin,
-                                                        lorem quis bibendum auctor, nisi elit conse quat ipsum
-                                                    </p>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="name">Seller Smith</div>
-                                                    <div class="position">Web developer</div>
-                                                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin,
-                                                        lorem
-                                                        quis biben dum auctor, nisi elit consequat ipsum, nec sagittis
-                                                        sem
-                                                        nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit
-                                                        amet
-                                                        mauris.
-                                                    </p>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="name">Peter Capidal</div>
-                                                    <div class="position">Front-end Developer</div>
-                                                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin,
-                                                        lorem
-                                                        quis biben dum auctor, nisi elit consequat ipsum, nec sagittis
-                                                        sem
-                                                        nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit
-                                                        amet
-                                                        mauris. Proin gravida nibh vel velit auctor aliquet. Aenean
-                                                        sollicudin,
-                                                        lorem quis bibendum auctor, nisi elit conse quat ipsum
-                                                    </p>
-                                                </div>
-                                                <div class="item">
-                                                    <div class="name">David James</div>
-                                                    <div class="position">Developer</div>
-                                                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin,
-                                                        lorem
-                                                        quis biben dum auctor, nisi elit consequat ipsum, nec sagittis
-                                                        sem
-                                                        nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit
-                                                        amet
-                                                        mauris.Proin gravida nibh vel velit auctor aliquet. Aenean
-                                                        sollicudin,
-                                                        lorem quis bibendum auctor, nisi elit conse quat ipsum
-                                                    </p>
-                                                </div>
+                                                {% for staff_member in staff %}
+                                                    <div class="item">
+                                                        <div class="name">{{ staff_member.full_name }}</div>
+                                                        <div class="position">{{ staff_member.profession }}</div>
+                                                        <p>{{ staff_member.info }}</p>
+                                                    </div>
+                                                {% endfor %}
+
                                             </div>
                                             <div class="social-content">
                                                 <div class="social">

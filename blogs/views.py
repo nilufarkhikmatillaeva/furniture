@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from blogs.models import Blog, BlogStatus, Category, Tag
 
-def blog_detail(request):
-    return render(request, 'blogs/blog-detail.html')
+# def blog_detail_view(request):
+#     return render(request, 'blogs/blog-detail.html')
+#
+# def blogs_list_view(request):
+#     return render(request, 'blogs/blog-list.html')
+#
 
-def blog_list(request):
-    return render(request, 'blogs/blog-list.html')
-
+from django.shortcuts import render
+from .models import Blog, Category, Tag, BlogStatus
 
 def blogs_list_view(request):
     context = {
@@ -16,7 +19,7 @@ def blogs_list_view(request):
         "recent_posts": Blog.objects.order_by('-created_at')[:2]
     }
     return render(
-        request, 'blogs/blogs-list.html',
+        request, 'blogs/blog-list.html',
         context
     )
 

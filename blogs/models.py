@@ -5,7 +5,7 @@ from shared.models import BaseModel
 
 class Author(BaseModel):
     full_name = models.CharField(max_length=128)
-    image = models.ImageField(upload_to='authors/')
+    image = models.ImageField(upload_to='authors/', null=True, blank=True)
     about = models.CharField(max_length=255)
     professions = models.CharField(max_length=128)
     is_active = models.BooleanField(default=True)
@@ -58,7 +58,7 @@ class BlogStatus(models.TextChoices):
 class Blog(BaseModel):
     title = models.CharField(max_length=128)
     short_description = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='blogs/', null=True, blank=True)
+    image = models.ImageField(upload_to='blogs/', blank=True, null=True)
 
     # this will change into rich text uploading field
     long_description = models.TextField()

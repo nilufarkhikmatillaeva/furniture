@@ -1,12 +1,19 @@
 from django.shortcuts import render
 
-# Functions for each HTML template
+from .models import Staff
+
+
 def page_404(request):
     return render(request, 'shared/404.html')
 
 def about_us(request):
-    return render(request, 'shared/about-us.html')
-
+    context = {
+        'staff' : Staff.objects.all(),
+    }
+    return render(
+        request, 'shared/about-us.html',
+        context
+    )
 def contact(request):
     return render(request, 'shared/contact.html')
 
