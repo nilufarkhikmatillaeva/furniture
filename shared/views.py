@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.contrib import messages
 
+from .forms import ContactForm
 from .models import Staff
 
 
@@ -15,10 +17,24 @@ def about_us(request):
         context
     )
 def contact(request):
-    return render(request, 'shared/contact.html')
+    if request.method =="GET":
+        return render(request, 'shared/contact.html')
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            text = "Successfully sent to the admin, thanks for your attention"
+            messages.success(request, text)
+
+        else:
+            errors = []
+            for field, field_errors in form.errors.items():
+                for error in field_errors:
+                    errors.append(f"{field}: {error}")
+
+            error_text = " | ".join(errors)
+            messages.error(request, error_text)
+        return render(request, 'shared/contact.html')
 
 def home(request):
     return render(request, 'shared/home.html')
-
-def index_2(request):
-    return render(request, 'index-2.html')
