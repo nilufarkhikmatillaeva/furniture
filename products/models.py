@@ -15,7 +15,7 @@ class Category(models.Model):
 
 
 class Products(models.Model):
-    image = models.ImageField(upload_to='banner/')
+    image = models.ImageField(upload_to='banner/' ,null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     title = models.CharField(max_length=64)
     description =models.CharField(max_length=255)

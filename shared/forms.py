@@ -1,7 +1,6 @@
 from django import forms
 
 from shared.models import Contact
-from django.contrib import messages
 
 
 class ContactForm(forms.ModelForm):
@@ -14,5 +13,3 @@ class ContactForm(forms.ModelForm):
         if 'hello' in message.lower():
             raise forms.ValidationError("Hello can not be inside message")
         return message
-
-

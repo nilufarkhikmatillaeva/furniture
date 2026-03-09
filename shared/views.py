@@ -1,8 +1,10 @@
-from django.shortcuts import render
 from django.contrib import messages
+from django.shortcuts import render
+from django.utils.translation import gettext_lazy as _
 
-from .forms import ContactForm
-from .models import Staff
+from shared.forms import ContactForm
+
+from shared.models import Staff
 
 
 def page_404(request):
@@ -16,16 +18,20 @@ def about_us(request):
         request, 'shared/about-us.html',
         context
     )
+
+def home(request):
+    return render(request, 'shared/home.html')
+
+
 def contact(request):
-    if request.method =="GET":
+    if request.method == "GET":
         return render(request, 'shared/contact.html')
     else:
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            text = "Successfully sent to the admin, thanks for your attention"
+            text = _("Successfully sent to the admin, thanks for your attention.")
             messages.success(request, text)
-
         else:
             errors = []
             for field, field_errors in form.errors.items():
@@ -36,5 +42,3 @@ def contact(request):
             messages.error(request, error_text)
         return render(request, 'shared/contact.html')
 
-def home(request):
-    return render(request, 'shared/home.html')
